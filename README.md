@@ -433,6 +433,10 @@ To run Windshaft-cartodb in development mode, simply type:
 ```bash
 node app.js development
 ```
+If you failed install Windshaft due to package not found issue, do the following then try again
+```bash
+sudo apt-get install libpango1.0-dev
+```
 
 ## Install ImageMagick ##
 
@@ -453,7 +457,7 @@ Add CartoDB Varnish PPA and install it:
 ```bash
 sudo add-apt-repository  ppa:cartodb/varnish
 sudo apt-get install varnish=2.1.5.1-cdb1 #or any version <3.x
-```
+``` 
 
 Varnish should allow telnet access in order to work with CartoDB, so you need to edit the `/etc/default/varnish` file and in the `DAEMON_OPTS` variable remove the `-S /etc/varnish/secret \` line.
 
@@ -523,6 +527,11 @@ echo "127.0.0.1 ${SUBDOMAIN}.localhost.lan" | sudo tee -a /etc/hosts
 # individual steps of user creation and settings management
 #
 sh script/create_dev_user ${SUBDOMAIN}
+
+# If you got 'virtus' not found error, make the following change in the Gemfile
+gem 'virtus',                   '1.0.0'
+# Then run
+bundle install
 ```
 
 Start the resque daemon (needed for import jobs):
